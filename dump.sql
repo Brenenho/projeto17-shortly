@@ -27,7 +27,8 @@ SET default_table_access_method = heap;
 CREATE TABLE public.sessions (
     id integer NOT NULL,
     user_id integer NOT NULL,
-    token character varying(256) NOT NULL
+    token character varying(256) NOT NULL,
+    "createdAt" date DEFAULT CURRENT_DATE
 );
 
 
@@ -92,7 +93,8 @@ ALTER SEQUENCE public.urls_id_seq OWNED BY public.urls.id;
 CREATE TABLE public."userUrls" (
     id integer NOT NULL,
     "userId" integer NOT NULL,
-    "urlId" integer NOT NULL
+    "urlId" integer NOT NULL,
+    "createdAt" date DEFAULT CURRENT_DATE
 );
 
 
@@ -181,8 +183,8 @@ ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_
 -- Data for Name: sessions; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-INSERT INTO public.sessions VALUES (1, 3, 'ea5e4405-02dc-44ba-b7ce-afd5d2268d9e');
-INSERT INTO public.sessions VALUES (2, 4, '3ece83bf-a634-49d0-9613-dd3cbc171e15');
+INSERT INTO public.sessions VALUES (1, 3, 'ea5e4405-02dc-44ba-b7ce-afd5d2268d9e', '2023-08-07');
+INSERT INTO public.sessions VALUES (2, 4, '3ece83bf-a634-49d0-9613-dd3cbc171e15', '2023-08-07');
 
 
 --
@@ -234,12 +236,12 @@ INSERT INTO public.urls VALUES (44, 4, 'https://github.com/Brenenho/projeto17-sh
 -- Data for Name: userUrls; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-INSERT INTO public."userUrls" VALUES (1, 3, 39);
-INSERT INTO public."userUrls" VALUES (2, 3, 40);
-INSERT INTO public."userUrls" VALUES (3, 3, 41);
-INSERT INTO public."userUrls" VALUES (4, 3, 42);
-INSERT INTO public."userUrls" VALUES (5, 4, 43);
-INSERT INTO public."userUrls" VALUES (6, 4, 44);
+INSERT INTO public."userUrls" VALUES (1, 3, 39, '2023-08-07');
+INSERT INTO public."userUrls" VALUES (2, 3, 40, '2023-08-07');
+INSERT INTO public."userUrls" VALUES (3, 3, 41, '2023-08-07');
+INSERT INTO public."userUrls" VALUES (4, 3, 42, '2023-08-07');
+INSERT INTO public."userUrls" VALUES (5, 4, 43, '2023-08-07');
+INSERT INTO public."userUrls" VALUES (6, 4, 44, '2023-08-07');
 
 
 --

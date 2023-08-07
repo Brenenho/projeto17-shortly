@@ -31,7 +31,7 @@ export async function createUrl(req, res) {
 
     console.log(urluser.rows[0])
 
-    res.send({ id: response.rows[0].id, shortUrl })
+    res.status(201).send({ id: response.rows[0].id, shortUrl })
 
     } catch (error) {
         res.status(500).send(error.message)
