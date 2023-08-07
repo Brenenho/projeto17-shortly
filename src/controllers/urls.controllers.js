@@ -13,15 +13,15 @@ export async function createUrl(req, res) {
 
     const session = await db.query("SELECT * FROM sessions WHERE token = $1", [token])
 
-    console.log(session.rows[0].user_id)
+    if (authorization != session.rows[0].token) {
+        return res.sendStatus(401)
+    }
 
     if (!session.rows.length) {
         return res.sendStatus(401)
     }    
 
     const shortUrl = nanoid(8);
-
-    console.log(shortUrl)
 
     try {
 
@@ -92,6 +92,10 @@ export async function getUrlByUserId(req, res) {
     const token = authorization.replace("Bearer ", "")
 
     const session = await db.query("SELECT * FROM sessions WHERE token = $1", [token])
+
+    if (authorization != session.rows[0].token) {
+        return res.sendStatus(401)
+    }
 
     if (!session.rows.length) {
         return res.sendStatus(401)
@@ -190,7 +194,7 @@ export async function deleteUrl(req, res) {
     SELECT urls.id FROM urls
         WHERE urls.id = $1`, [id])
 
-    if (!urlExists.rows.length) {
+    if (urlExists.rows.length === 0) {
         return res.sendStatus(404)
     }
 
